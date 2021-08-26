@@ -1,0 +1,151 @@
+.titulo {
+    font-family: var(--font-family);
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+.psswd {
+    display: block;
+}
+
+.w-100 {
+    width: 100%;
+    flex-grow: 1;
+}
+
+p-password {
+    width: 100%;
+}
+
+label {
+    margin: 1.3rem auto 0.7rem auto;
+    font-weight: 400;
+    font-family: var(--font-family);
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.field {
+    text-align: center;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    text-decoration: none;
+}
+
+.mar-elije {
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+}
+
+.field {
+    width: 100%;
+}
+
+.carta {
+    max-width: 40%;
+    margin: auto;
+    min-width: 100px;
+    margin-top: 2rem;
+    background-color: var(--surface-50);
+    padding: 2rem 2.4rem;
+    margin-bottom: 3.2rem;
+}
+
+@media (max-width: 1400px) {
+    .carta {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 1080px) {
+    .carta {
+        max-width: 60%;
+    }
+    button {
+        margin-top: 2rem;
+        width: 100%;
+    }
+    .container button {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .carta {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 750px) {
+    .carta {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .carta {
+        max-width: 97%;
+    }
+}
+
+
+h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+p-divider {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+button {
+    margin-top: 2rem;
+    width: 80%;
+}
+
+.container button {
+    width: 50%;
+    margin-bottom: 3rem;
+    background-color: white;
+}
+
+.container button:hover {
+    box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
+    background-color: white;
+}
+
+.p-error {
+    font-size: 1rem;
+}
+
+.animate__animated.animate__fadeInLeft {
+    --animate-duration: 300ms;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.7rem;
+    font-weight: 400;
+}

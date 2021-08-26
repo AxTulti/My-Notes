@@ -1,0 +1,78 @@
+<app-header></app-header>
+<h1 class="titulo">Inicia Sesión</h1>
+<div class="formulario">
+  <!-- (ngSubmit)="registerUser()" -->
+  <div class="form-group carta p-shadow-24 animate__animated animate__fadeInUp">
+    <form autocomplete="off" (ngSubmit)="loginUser()">
+    
+      <h2>Rellena los campos para iniciar sesión</h2>
+      <p-divider></p-divider>
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+          <input
+            name="email"
+            type="text"
+            pInputText
+            placeholder="Escribe aquí tu email"
+            [(ngModel)]="userToLogin.email"
+            [ngClass]="{ 'ng-invalid ng-dirty': !userLoginValidness.email }"
+          />
+        </div>
+        <!-- *ngIf="!userValidness.email" -->
+        <small class="p-error"
+        *ngIf="!userLoginValidness.email"
+        >El email no es válido.</small>
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <input
+            name="password"
+            type="password"
+            pInputText
+            placeholder="Escribe aquí tu contraseña"
+            [(ngModel)]="userToLogin.password"
+            [ngClass]="{ 'ng-invalid ng-dirty': !userLoginValidness.password }"
+          />
+        </div>
+
+        <small class="p-error"
+        *ngIf="!userLoginValidness.password"
+        >La contraseña no es válida.</small>
+      </div>
+      <!-- [loading]="registrationInProgress" -->
+      <button
+          pButton
+          pRipple
+          type="submit"
+          label="Iniciar sesión"
+          class="p-button-raised p-button-lg btn-mar-left"
+          [loading]="loginInProgress"
+        ></button>
+        <p-divider></p-divider>
+        
+  </form>
+  <h3>Recuerdame</h3>
+  <p-inputSwitch [(ngModel)]="rememberMe"></p-inputSwitch>
+  </div>
+  
+</div>
+
+<div class="container flex-d-col">
+  <h2> ¿No te has registrado? </h2>
+    <button
+      pButton
+      pRipple
+      type="button"
+      label="Registrate"
+      class="p-button-text p-button-raised p-button-lg btn-mar-left"
+      [routerLink]="['/login']"
+    ></button>
+</div>
+
+  
+<p-toast position="bottom-right" [breakpoints]="{'600px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<app-footer></app-footer>

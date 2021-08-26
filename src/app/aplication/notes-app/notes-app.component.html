@@ -1,0 +1,101 @@
+<app-notes-header headerTitle="Notas"></app-notes-header>
+<div class="aplication">
+    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}" *ngIf="isSomethingInProgress()"></p-progressBar>
+    <div class="toolbar mar-top-10-px">
+        <p-toolbar>
+            <div class="p-toolbar-group-left gap-10-px">
+                <p-button label="Crear" icon="pi pi-plus" styleClass="mar-rigth-10-px" class="mar-rigth-10-px"
+                    [disabled]= "isSomethingInProgress()"
+                    (onClick)="createPanel.toggle($event)">
+                </p-button>
+                <p-button label="Recargar" icon="pi pi-refresh" styleClass="p-button-success"
+                [disabled]="isSomethingInProgress()"
+                    [loading]="isRefreshInProgress" (onClick)="refreshNotes()"></p-button>
+            </div>
+            <h2>Tus Notas</h2>
+            <div class="p-toolbar-group-right gap-5-px">
+                <p-overlayPanel #searchPanel>
+                    <ng-template pTemplate>
+                        <p-autoComplete [(ngModel)]="textToSearch" [suggestions]="allNotesTitles()"
+                            (completeMethod)="search($event)" (input)="search($event)"></p-autoComplete>
+                    </ng-template>
+                </p-overlayPanel>
+                <p-overlayPanel #createPanel [showCloseIcon]="true" [dismissable]="false">
+                    <ng-template pTemplate>
+                        <form autocomplete="off" (ngSubmit)="createNote() && createPanel.hide()" class="flex">
+                            <input name="title" type="text" pInputText placeholder="Escribe aquí el título"
+                                [(ngModel)]="newNote.title"
+                                [ngClass]="{ 'ng-invalid ng-dirty': !isTitleValid() }" />
+
+                            <input name="subtitle" type="text" pInputText placeholder="Escribe aquí el subtitulo"
+                                [(ngModel)]="newNote.subtitle" />
+
+                            <textarea name = "content" [rows]="5" [cols]="getTextAreaCols()" pInputTextarea [autoResize]="true" [(ngModel)]="newNote.content" placeholder="Escribe aquí el contenido"></textarea>
+                            <p-button name = "submit" type="submit" icon="pi pi-check" label="Crear" class="mar-rigth-10-px" [loading] = "isEditionInProgress"></p-button>
+                        </form>
+                    </ng-template>
+                </p-overlayPanel>
+                <p-overlayPanel #updatePanel [showCloseIcon]="true" [dismissable]="false">
+                    <ng-template pTemplate>
+                        <form autocomplete="off" (ngSubmit)="updateNotes()&& updatePanel.hide()" class="flex">
+                            <input name="title" type="text" pInputText placeholder="Escribe aquí el nuevo título"
+                            [(ngModel)]="updateNote.title"
+                                [ngClass]="{ 'ng-invalid ng-dirty': !isUpdateTitleValid() }" />
+
+                            <input name="subtitle" type="text" pInputText placeholder="Escribe aquí el nuevo subtitulo"
+                                [(ngModel)]="updateNote.subtitle"
+                                 />
+
+                            <textarea name = "content" [rows]="5" [cols]="getTextAreaCols()" pInputTextarea [autoResize]="true" [(ngModel)]="updateNote.content" placeholder="Escribe aquí el nuevo contenido"
+                            
+                            ></textarea>
+                            <p-button name = "submit" type="submit" icon="pi pi-check" label="Actualizar" class="mar-rigth-10-px" [loading] = "isEditionInProgress"></p-button>
+                        </form>
+                    </ng-template>
+                </p-overlayPanel>
+                <p-button icon="pi pi-search" styleClass="p-button-help" [disabled]="!canSearch() || isSomethingInProgress()"
+                    (onClick)="searchPanel.toggle($event)"></p-button>
+                <p-button icon="pi pi-pencil" styleClass="p-button-info" (onClick) = "updateUpdatedNote() && updatePanel.toggle($event)" [disabled]="!canEdit() || isSomethingInProgress()" [loading] = "isEditionInProgress">
+                </p-button>
+                <p-button icon="pi pi-trash" styleClass="p-button-danger"
+                    [loading] = "isDeletionInProgress"
+                    (onClick)= "deleteNotes()"
+                    [disabled]="!canDelete() || isSomethingInProgress()"></p-button>
+            </div>
+        </p-toolbar>
+    </div>
+</div>
+<div class="notes">
+    <div class="carta padding-standard note" *ngFor="let note of visibleNotes; index as i">
+        <p-checkbox name="notesSelection" [value]="note._id" [(ngModel)]="selectedNotesIds"></p-checkbox>
+        <h3 class="note-title">{{ note.title }}</h3>
+        <h4 *ngIf="note.subtitle" class="note-subtitle">{{ note.subtitle }}</h4>
+        <p *ngIf="note.content && note.content.length > 90" class="note-content">{{ (note.content | slice : 0 : 90) + "..."  }}</p>
+        <p *ngIf="note.content && note.content.length <= 90" class="note-content">{{ note.content  }}</p>
+        <button pButton pRipple type="button" (click) = "showDialog(i)" label="Abrir Nota" class="p-button-text"></button>
+        <p-dialog [header]="note.title" [(visible)]="visibilityArray[i]">
+            <h3 class="dialog-subtitle">{{note.subtitle}}</h3>
+            <p>{{note.content}}</p>
+        </p-dialog>
+    </div>
+</div>
+<div class="notes no-padding-top"  *ngIf="isRefreshInProgress">
+    <div class="carta padding-standard note" *ngFor="let falseNote of falseNotes">
+        <p-skeleton class="checkbox" shape= "square" size= "1.5rem"></p-skeleton>
+        <p-skeleton  class="note-title  m-b-07rem" shape = "rectangle" width="70%" height= "2.4rem"></p-skeleton>
+        <p-skeleton class="note-subtitle m-b-1rem" shape = "rectangle" width="50%" height= "1.8rem"></p-skeleton>
+        <p-skeleton  shape = "rectangle" width="100%" height= "1.2rem" class="note-content mb-03-rem"></p-skeleton>
+        <p-skeleton  shape = "rectangle" width="100%" height= "1.2rem" class="note-content mb-03-rem"></p-skeleton>
+        <p-skeleton  shape = "rectangle" width="100%" height= "1.2rem" class="note-content mb-03-rem"></p-skeleton>
+        <p-skeleton  shape = "rectangle" width="40%" height= "1.2rem" class="note-content mb-03-rem"></p-skeleton>
+    </div>
+</div>
+<div *ngIf="visibleNotes.length === 0 && textToSearch === '' && !(isSomethingInProgress())" class="note-not-found">
+    <h2>Por el momento no has creado ninguna nota</h2>
+    <h3>Las notas que crees aparecerán aquí</h3>
+</div>
+<div *ngIf="visibleNotes.length === 0 && textToSearch !== '' && !(isSomethingInProgress())" class="note-not-found">
+    <h2>No se encontró ninguna nota</h2>
+    <h3>No se ha encontrado ninguna nota con el texto: "{{textToSearch}}"</h3>
+</div>
+<p-toast position="bottom-right" [breakpoints]="{ '600px': { width: '100%', right: '0', left: '0' } }"></p-toast>

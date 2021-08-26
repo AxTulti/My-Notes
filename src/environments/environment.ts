@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  AUTH_API_URL:'https://my-jwt-auth-api.herokuapp.com',
+  CRUD_API_URL: 'https://my-crud-notes.herokuapp.com'
 };
 
 /*

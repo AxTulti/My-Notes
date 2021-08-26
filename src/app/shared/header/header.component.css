@@ -1,0 +1,115 @@
+header {
+    width: 100%;
+    padding: 0;
+    background-color: var(--primary-color);
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    padding-left: 10%;
+    position: fixed;
+    --animate-duration: 350ms;
+    z-index: 2;
+}
+
+span {
+    font-size: 1.6rem;
+    color: white;
+    font-family: var(--secondary-font-family);
+    font-weight: 400;
+}
+
+span strong {
+    font-size: 1.8rem;
+    font-family: var(--font-family);
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    gap: 1rem;
+    margin-right: 3rem;
+}
+
+.nav-link {
+    display: inline-flex;
+    color: white;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    font-weight: 400;
+    text-decoration: none;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8rem 2rem 0.8rem 2rem;
+    transition: 250ms all ease-in-out;
+}
+.nav-link:hover {
+    background-color: var(--darkest-shade);
+}
+
+.nav-link-active {
+    background-color: var(--white-shade);
+    color: black;
+    font-weight: 600;
+}
+
+.nav-link-active:hover {
+    color: var(--gray-800);
+    background-color: var(--white-shade);
+}
+.title {
+    display: inline-flex;
+    min-width: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.mg-cover {
+    min-height: 48.6px;
+    max-height: 48.6px;
+}
+
+.nav-link-block {
+    color: white;
+    display: flex;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: var(--font-family);
+    font-weight: 400;
+    text-decoration: none;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    transition: 250ms all ease-in-out;
+}
+
+.nav-link-block:hover {
+    background-color: var(--darkest-shade);
+}
+
+.nav-block {
+    padding-top: 15.4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: var(--primary-color);
+    height: 70vh;
+    z-index: 1;
+}
+
+.nav-link-active {
+    background-color: var(--white-shade);
+    color: black;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+}

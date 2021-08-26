@@ -1,0 +1,31 @@
+<header
+  #header
+  class="animate__animated animate__faster"
+  [ngClass]="[
+    showHeader ? 'animate__slideInDown' : 'animate__slideOutUp',
+    !isUserAtTop() && showHeader ? ' p-shadow-8 ' : '  '
+  ]"
+>
+  <div class="barras-pensalas" (click)="showSidebar = true">
+    <i
+      class="pi pi-bars"
+      style="font-size: 2rem; color: white; height: 100%"
+    ></i>
+  </div>
+  <div class="title">
+    <h3>{{ headerTitle }}</h3>
+  </div>
+</header>
+<p-sidebar [(visible)]="showSidebar">
+  <h2>My Notes</h2>
+  <div class="center-xy-flex"></div>
+  <a (click)="showSidebar = false" [routerLink]="['/app']" [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="'sidebar-active'">
+      <h3>Notas</h3>
+      <i class="pi pi-file"></i>
+  </a>
+
+  <a (click)="showSidebar = false" [routerLink]="['/app/profile']" [routerLinkActive]="'sidebar-active'">
+      <h3>Perfil</h3>
+      <i class="pi pi-user"></i>
+    </a>
+</p-sidebar>

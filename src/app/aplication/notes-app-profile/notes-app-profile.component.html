@@ -1,0 +1,68 @@
+<app-notes-header headerTitle="Perfil"></app-notes-header>
+<div class="aplication">
+    <div class="carta pading-stretkch max-60">
+        <p-avatar *ngIf="user.name == undefined" icon="pi pi-user" size="xlarge" shape="circle"></p-avatar>
+        <p-avatar *ngIf="user.name != undefined" [label]="user.name[0]" size="xlarge" shape="circle"></p-avatar>
+        <div class="max-width-100">
+            <div *ngIf="user.name != undefined">
+                <h2>{{user.name }}</h2>
+            </div>
+            <div *ngIf="user.lastName != undefined">
+                <h3>{{user.lastName }}</h3>
+            </div>
+            <div id="email" *ngIf="user.email != undefined">
+                <h3>{{user.email }}</h3>
+            </div>
+        </div>
+        <button pButton pRipple type="button" class="p-button-warning" label="Cerrar Sesión" icon="pi pi-sign-out"
+            [disabled]="isSomethingInProgress()" (click)="logout()" [loading]="isLogoutInProgress"></button>
+        <button pButton pRipple type="button" class="p-button-warning" label="Cerrar Todas Las Sesiones"
+            icon="pi pi-sign-out" [disabled]="isSomethingInProgress()" (click)="this.displayLogoutAll = true"
+            [loading]="isLogoutAllInProgress"></button>
+        <p-dialog header="Intruduce Tu Contraseña" [(visible)]="displayLogoutAll" [modal]="true"
+            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
+            <input type="text" pInputText placeholder="Escribe aquí tu contraseña" [(ngModel)]="password" />
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-sign-out" (onClick)="logoutAll() && displayLogoutAll=false"
+                    label="Cerrar Todas las seciones"></p-button>
+            </ng-template>
+        </p-dialog>
+        <button pButton pRipple type="button" class="p-button-info" label="Editar Nombre o apellidos"
+            icon="pi pi-pencil" [disabled]="isSomethingInProgress()" (click)="displayEditData=true"></button>
+        <p-dialog header="Intruduce Tus nuevos datos" [(visible)]="displayEditData" [modal]="true"
+            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
+            <input type="text" pInputText placeholder="Escribe tu nuevo nombre" [(ngModel)]="name" />
+            <input type="text" pInputText placeholder="Escribe tu nuevo apellido" [(ngModel)]="lastName" />
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-pencil" (onClick)="editUserData() && displayEditData=false" label="Editar Cuenta">
+                </p-button>
+            </ng-template>
+        </p-dialog>
+        <button pButton pRipple type="button" class="p-button-info" label="Editar Contraseña" icon="pi pi-pencil"
+            [disabled]="isSomethingInProgress()" (click) = "displayEditPassword = true"[loading] = "isUserPasswordEditingInProgress"></button>
+        <p-dialog header="Intruduce tu nueva contraseña" [(visible)]="displayEditPassword" [modal]="true"
+            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
+            <input type="text" pInputText placeholder="Escribe tu contraseña actual" [(ngModel)]="password" />
+            <input type="text" pInputText placeholder="Escribe tu nueva contraseña" [(ngModel)]="newPassword" />
+          
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-pencil" (onClick)="changeUserPassword() && displayEditPassword=false" label="Editar Contraseña">
+                </p-button>
+            </ng-template>
+        </p-dialog>
+        
+        <button pButton pRipple type="button" class="p-button-danger" label="Eliminar mi Cuenta" icon="pi pi-trash"
+            [disabled]="isSomethingInProgress()" (click) = "displayDeleteAccount=true" [loading] = "isUserDeletionInProgress"></button>
+            <p-dialog header="Intruduce tu nueva contraseña" [(visible)]="displayDeleteAccount" [modal]="true"
+            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
+            <input type="text" pInputText placeholder="Escribe tu contraseña" [(ngModel)]="password" />
+          
+            <ng-template pTemplate="footer">
+                <p-button icon="pi pi-pencil" (onClick)="deleteAcount() && displayDeleteAccount=false" label="Eliminar Cuenta">
+                </p-button>
+            </ng-template>
+        </p-dialog>
+        <p-toast position="bottom-right" [breakpoints]="{ '600px': { width: '100%', right: '0', left: '0' } }">
+        </p-toast>
+    </div>
+</div>

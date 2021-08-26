@@ -1,0 +1,63 @@
+.aplication {
+    margin-top: 0;
+    padding-top: 54.4px;
+}
+
+p-avatar {
+    margin-bottom: 0.8rem;
+    font-size: 5rem;
+}
+h3 {
+    text-align: center;
+    word-wrap: break-word;
+
+}
+button {
+    margin-bottom: 0.8rem;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+    button {
+        width: 100%;
+    }
+}
+
+.max-60 {
+    width: 95%;
+    margin: auto;
+    max-width: 35rem;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.pading-stretkch {
+    padding: 2rem;
+}
+
+#email h3 {
+    padding-top: 0.6rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 300 !important;
+    margin-bottom: 1.8rem;
+}
+
+h2 {
+    max-width: 100%;
+}
+
+.max-width-100 {
+    max-width: 100%;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
+
+p-password {
+    width: 100%;
+}

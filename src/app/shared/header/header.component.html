@@ -1,0 +1,21 @@
+<header #header class="animate__animated animate__faster" [ngClass]="[showHeader ? 'animate__slideInDown' : 'animate__slideOutUp', (!(isUserAtTop()) && showHeader) ? ' p-shadow-8 ' : '  ']" >
+  <div class="title">
+    <a [routerLink]="['/']" ><span>My <strong>Notes</strong></span></a>
+  </div>
+  <div class="nav" *ngIf="headerCompacted">
+    <a pRipple [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="'nav-link-active'" class="nav-link">Página Principal</a>
+    <a pRipple [routerLink]="['/login']" [routerLinkActive]="'nav-link-active'" class="nav-link">Iniciar Sesión</a>
+    <a pRipple [routerLink]="['/register']" [routerLinkActive]="'nav-link-active'" class="nav-link">Registrar</a>
+  </div>
+
+  <div class="nav" *ngIf="!headerCompacted" >
+    <i class="pi" [ngClass] = " !shouldShowMenu ? 'pi-bars' : 'pi-times' " id="hamburgerMenu" style="font-size: 2rem" (click) = "toogleMenu()"></i>
+  </div>
+  
+</header>
+<div class="mg-cover"></div>
+<div class="nav-block" *ngIf="shouldShowMenu">
+  <a pRipple [routerLink]="['/']" [routerLinkActiveOptions]="{exact: true}" [routerLinkActive]="'nav-link-active'" class="nav-link-block">Página Principal</a>
+  <a pRipple [routerLink]="['/login']" [routerLinkActive]="'nav-link-active'" class="nav-link-block">Iniciar Sesión</a>
+  <a pRipple [routerLink]="['/register']" [routerLinkActive]="'nav-link-active'" class="nav-link-block">Registrar</a>
+</div>

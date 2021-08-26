@@ -1,0 +1,127 @@
+<app-header></app-header>
+<h1 class="titulo">Registrate</h1>
+<div class="formulario">
+  <form autocomplete="off" class="animate__animated animate__fadeInUp" (ngSubmit)="registerUser()">
+    <div class="form-group carta p-shadow-24">
+      <h2>Rellena los campos para registrarte</h2>
+      <p-divider></p-divider>
+      <div class="field">
+        <label for="name">Nombre de Usuario</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+          <input
+            name="name"
+            type="text"
+            pInputText
+            placeholder="Escribe aquí tu nombre"
+            [(ngModel)]="userToRegister.name"
+            [ngClass]="{ 'ng-invalid ng-dirty': !userValidness.name }"
+          />
+        </div>
+        <small class="p-error"
+        *ngIf="!userValidness.name"
+          >El nombre no es valido, debe tener de 2 a 20 caracteres.</small
+        >
+      </div>
+      <div class="field">
+        <label for="lastName">Apellidos</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-users"></i></span>
+          <input
+            name="lastName"
+            type="text"
+            pInputText
+            placeholder="Escribe aquí tus apellidos"
+            [(ngModel)]="userToRegister.lastName"
+            [ngClass]="{ 'ng-invalid ng-dirty': !userValidness.lastName }"
+          />
+        </div>
+        <small class="p-error"
+        *ngIf="!userValidness.lastName"
+          >Los apellidos no son válidos, debe tener de 2 a 30 caracteres.</small
+        >
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+          <input
+            name="email"
+            type="text"
+            pInputText
+            placeholder="Escribe aquí tu email"
+            [(ngModel)]="userToRegister.email"
+            [ngClass]="{ 'ng-invalid ng-dirty': !userValidness.email }"
+          />
+        </div>
+        <small class="p-error"
+        *ngIf="!userValidness.email"
+        >El email no es válido.</small>
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <div class="p-inputgroup w-100">
+          <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+          <p-password
+            placeholder="Escribe una contraseña"
+            name="password"
+            promptLabel="Introduce tu contraseña"
+            weakLabel="Contraseña Debil"
+            mediumLabel="Contraseña Media"
+            strongLabel="Contraseña Fuerte"
+            [toggleMask]="true"
+            class="psswd"
+            [(ngModel)]="userToRegister.password"
+            [ngClass]="{ 'ng-invalid ng-dirty border-red': !userValidness.password }"
+          >
+            <ng-template pTemplate="header">
+              <h4 class="mar-elije">Elije una contraseña</h4>
+            </ng-template>
+            <ng-template pTemplate="footer">
+              <p-divider></p-divider>
+              <h4 class="p-mt-2 mar-elije">Sujerencias</h4>
+              <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                <li>Por lo menos una minúscula</li>
+                <li>Por lo menos una mayúscula</li>
+                <li>Por lo menos ún número</li>
+                <li>Por lo menos 8 caracteres</li>
+              </ul>
+              <p-divider></p-divider>
+              <h4 class="p-mt-2 mar-elije">Requisitos</h4>
+              <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+                <li>Al menos 6 caracteres</li>
+                <li>Máximo 20 caracteres</li>
+              </ul>
+            </ng-template>
+          </p-password>
+        </div>
+        <small class="p-error"
+        *ngIf="!userValidness.password"
+          >La contraseña no es válida, debe tener de 2 a 20 caracteres.</small
+        >
+      </div>
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="Registrate"
+        class="p-button-raised p-button-lg btn-mar-left"
+        [loading]="registrationInProgress"
+      ></button>
+    </div>
+  </form>
+  <div class="container flex-d-col">
+    <h2> ¿Ya te registraste? </h2>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Iniciar Sesión"
+        class="p-button-text p-button-raised p-button-lg btn-mar-left"
+        [routerLink]="['/login']"
+      ></button>
+  </div>
+  
+</div>
+<app-footer></app-footer>
+<p-toast position="bottom-right" [breakpoints]="{'600px': {width: '100%', right: '0', left: '0'}}"></p-toast>
