@@ -19,7 +19,7 @@ export class NotesAppComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.canTheUserProceed();
-    //this.setTouchMode();
+    this.setTouchMode();
     this.refreshNotes();
   }
   public showCreateDialog: boolean = false;
