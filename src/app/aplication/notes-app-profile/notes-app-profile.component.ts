@@ -46,8 +46,13 @@ export class NotesAppProfileComponent implements OnInit {
 
   public setTouchMode() {
     if (localStorage.getItem('touchMode')) return;
-    if ("ontouchstart" in document.documentElement) return localStorage.setItem('touchMode', 'true');
+    if ("ontouchstart" in document.documentElement) { 
+      localStorage.setItem('touchMode', 'true')
+      this.isTouchModeOn = true
+    }
+
     localStorage.setItem('touchMode', 'false');
+    this.isTouchModeOn = false;
   }
 
   public displayEditData = false;
