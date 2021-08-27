@@ -18,6 +18,8 @@ export class NotesAppProfileComponent implements OnInit {
   ) { 
     this.canTheUserProceed();
   }
+  public isTouchModeOn: boolean = localStorage.getItem('touchMode') === 'true' ? true : false;
+  public updateLocalhostTouchMode = () => localStorage.setItem('touchMode', this.isTouchModeOn.toString());
   public isSomethingInProgress = () => this.isUserDeletionInProgress ||
   this.isUserPasswordEditingInProgress ||
   this.isUserEditingInProgress ||
@@ -40,6 +42,12 @@ export class NotesAppProfileComponent implements OnInit {
     email: '',
     lastName: ''
   };
+
+  public setTouchMode() {
+    if (localStorage.getItem('touchMode')) return;
+    if ("ontouchstart" in document.documentElement) return localStorage.setItem('touchMode', 'true');
+    localStorage.setItem('touchMode', 'false');
+  }
 
   public displayEditData = false;
   public displayChangePassword = false;

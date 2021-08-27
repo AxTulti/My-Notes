@@ -19,7 +19,20 @@ export class NotesAppComponent implements OnInit {
     private messageService: MessageService
   ) {
     this.canTheUserProceed();
+    //this.setTouchMode();
     this.refreshNotes();
+  }
+  public showCreateDialog: boolean = false;
+  public showEditDialog: boolean = false;
+  public showSearchDialog: boolean = false;
+  public setTouchMode() {
+    if (localStorage.getItem('touchMode')) return;
+    if ("ontouchstart" in document.documentElement) return localStorage.setItem('touchMode', 'true');
+    localStorage.setItem('touchMode', 'false');
+  }
+
+  public isTouchModeOn() {
+    return localStorage.getItem('touchMode') === 'true';
   }
   public selectedNotesIds = [];
 

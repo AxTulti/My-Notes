@@ -52,17 +52,19 @@
         </p-dialog>
         
         <button pButton pRipple type="button" class="p-button-danger" label="Eliminar mi Cuenta" icon="pi pi-trash"
-            [disabled]="isSomethingInProgress()" (click) = "displayDeleteAccount=true" [loading] = "isUserDeletionInProgress"></button>
-            <p-dialog header="Intruduce tu nueva contraseña" [(visible)]="displayDeleteAccount" [modal]="true"
-            [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
-            <input type="text" pInputText placeholder="Escribe tu contraseña" [(ngModel)]="password" />
-          
-            <ng-template pTemplate="footer">
-                <p-button icon="pi pi-pencil" (onClick)="deleteAcount() && displayDeleteAccount=false" label="Eliminar Cuenta">
-                </p-button>
-            </ng-template>
-        </p-dialog>
-        <p-toast position="bottom-right" [breakpoints]="{ '600px': { width: '100%', right: '0', left: '0' } }">
+        [disabled]="isSomethingInProgress()" (click) = "displayDeleteAccount=true" [loading] = "isUserDeletionInProgress"></button>
+        <p-dialog header="Intruduce tu nueva contraseña" [(visible)]="displayDeleteAccount" [modal]="true"
+        [style]="{width: '50vw'}" [draggable]="false" [resizable]="false" [breakpoints]="{'960px': '75vw'}">
+        <input type="text" pInputText placeholder="Escribe tu contraseña" [(ngModel)]="password" />
+        
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-pencil" (onClick)="deleteAcount() && displayDeleteAccount=false" label="Eliminar Cuenta">
+            </p-button>
+        </ng-template>
+    </p-dialog>
+    <h3>Modo touch</h3>
+    <p-inputSwitch [(ngModel)]="isTouchModeOn" (onChange) = "updateLocalhostTouchMode()"></p-inputSwitch>
+    <p-toast position="bottom-right" [breakpoints]="{ '600px': { width: '100%', right: '0', left: '0' } }">
         </p-toast>
     </div>
 </div>
