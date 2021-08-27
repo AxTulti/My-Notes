@@ -17,6 +17,7 @@ export class NotesAppProfileComponent implements OnInit {
     private messageService: MessageService
   ) { 
     this.canTheUserProceed();
+    this.setTouchMode();
   }
   public isTouchModeOn: boolean = localStorage.getItem('touchMode') === 'true' ? true : false;
   public updateLocalhostTouchMode = () => localStorage.setItem('touchMode', this.isTouchModeOn.toString());
