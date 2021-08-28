@@ -125,7 +125,7 @@
             "..." }}</p>
         <p *ngIf="note.content && note.content.length <= 90" class="note-content">{{ note.content }}</p>
         <button pButton pRipple type="button" (click)="showDialog(i)" label="Abrir Nota" class="p-button-text"></button>
-        <p-dialog [header]="note.title" [style]="{width: '75vw'}" [(visible)]="visibilityArray[i]">
+        <p-dialog [header]="note.title" [breakpoints]="{'960px': '85vw'}" [style]="{width: 'auto'}" [(visible)]="visibilityArray[i]">
             <h3 class="dialog-subtitle">{{note.subtitle}}</h3>
             <p>{{note.content}}</p>
         </p-dialog>
